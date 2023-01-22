@@ -37,7 +37,11 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:120',
+            'text' => 'required'
+        ]);
+        
     }
 
     /**
