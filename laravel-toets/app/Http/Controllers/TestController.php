@@ -49,7 +49,7 @@ class TestController extends Controller
     ]);
     $test->save();                  //het object opslaan en dus de rij opslaan in de tabel
     
-    return to_route('test.index'); //redirect naar de route notes.index    
+    return to_route('tests.index'); //redirect naar de route notes.index    
     }
 
     /**
@@ -58,10 +58,11 @@ class TestController extends Controller
      * @param  \App\Models\test  $test
      * @return \Illuminate\Http\Response
      */
-    public function show(test $test)
-    {
-        //
-    }
+    public function show(Test $test)
+{
+    return view('tests.show')->with('tests', $test);
+}
+
 
     /**
      * Show the form for editing the specified resource.
