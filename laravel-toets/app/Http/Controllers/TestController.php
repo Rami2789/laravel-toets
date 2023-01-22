@@ -41,7 +41,15 @@ class TestController extends Controller
             'title' => 'required|max:120',
             'text' => 'required'
         ]);
-        
+    
+        $test = new Test([              //nieuw object aan maken van Note model
+        'user_id' => Auth::id(),    //id van de huidige user in user_id zetten
+        'title' => $request->title, //title (request) in title zetten
+        'text' => $request->text    //text (request) in text zetten
+    ]);
+    $test->save();                  //het object opslaan en dus de rij opslaan in de tabel
+    
+    return to_route('test.index'); //redirect naar de route notes.index    
     }
 
     /**
