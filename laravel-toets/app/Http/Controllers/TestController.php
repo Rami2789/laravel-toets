@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\test;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,9 @@ class TestController extends Controller
      */
     public function index()
     {
-        //
+        $test = Test::where('user_id', Auth::user()->id)->latest('updated_at')->paginate(5);
+        return view('tests.index')->with('test', $test);
+    
     }
 
     /**
