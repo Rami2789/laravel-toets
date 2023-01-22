@@ -72,7 +72,7 @@ class TestController extends Controller
      */
     public function edit(test $test)
     {
-        //
+        return view('tests.edit')->with('test', $test);
     }
 
     /**
@@ -84,7 +84,18 @@ class TestController extends Controller
      */
     public function update(Request $request, test $test)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:120',
+            'text' => 'required'
+        ]);
+    
+        $test->update([
+            'title' => $request->title,
+            'text' => $request->text
+        ]);
+    
+        return to_route('test.show', $test);
+    
     }
 
     /**
@@ -95,6 +106,7 @@ class TestController extends Controller
      */
     public function destroy(test $test)
     {
-        //
+        $test->delete();
+        return to_route('test.index');
     }
 }

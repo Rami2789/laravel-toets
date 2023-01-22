@@ -15,6 +15,13 @@
                 <p class="opacity-70 ml-8">
                 <strong>Updated at: </strong> {{ $tests->updated_at->diffForHumans() }}
                 </p>
+                <a href="{{ route('test.edit', $tests) }}" class="btn-link ml-auto">Edit Test</a>
+                <form action="{{ route('test.destroy', $tests) }}" method="post">
+        @method('delete')
+        @csrf
+        <button type="submit" class="btn btn-danger ml-4" onclick="return confirm('Are you sure you wish to delete this test?')">Delete Test</button>
+    </form>
+
             </div>
 
 
